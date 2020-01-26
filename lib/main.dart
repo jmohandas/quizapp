@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import './question.dart';
+import './answer.dart';
+
 void main() => runApp(QuizApp());
 
 class QuizApp extends StatefulWidget {
@@ -11,10 +14,28 @@ class QuizApp extends StatefulWidget {
 
 class _QuizAppWithSate extends State<QuizApp> {
   final _questions = [
-    'Where was the first verion of flutter unveiled?',
-    'Which company is supporting flutter development?',
-    'Which programming language is used for flutter development?',
+    {
+      'questionText': 'Which mammal first reached earth\'s orbit alive?',
+      'answers': ['Cat', 'Monkey', 'Dog', 'Human'],
+    },
+    {
+      'questionText': 'What is the name of jewish new year?',
+      'answers': ['Hanukkah', 'Kwanzaa', 'Yom kippur', 'Rosh Hashanah'],
+    },
+    {
+      'questionText': 'What is the largest planet in our solar system?',
+      'answers': ['Jupitor', 'Pluto', 'Saturn', 'Earth', 'Venus'],
+    },
+    {
+      'questionText': 'War and Peace book was originally written in which language?',
+      'answers': ['English', 'German', 'Russian', 'French'],
+    },
+    {
+      'questionText': 'What temperature is the same in Celsius and Fahrenheit?',
+      'answers': ['0', '-40', '100', '-60', '63'],
+    },
   ];
+
   var _questionIndex = 0;
 
   void _answerButtonAction() {
@@ -33,28 +54,10 @@ class _QuizAppWithSate extends State<QuizApp> {
         ),
         body: Column(
           children: <Widget>[
-            Text(
-              _questions[_questionIndex],
-              style: TextStyle(
-                fontSize: 28,
-              ),
-            ),
-            RaisedButton(
-              onPressed: _answerButtonAction,
-              child: Text('Answer 1'),
-            ),
-            RaisedButton(
-              onPressed: _answerButtonAction,
-              child: Text('Answer 2'),
-            ),
-            RaisedButton(
-              onPressed: _answerButtonAction,
-              child: Text('Answer 3'),
-            ),
-            RaisedButton(
-              onPressed: _answerButtonAction,
-              child: Text('Answer 4'),
-            ),
+            Question(_questions[_questionIndex]['questionText']),
+            ...((_questions[_questionIndex]['answers'] as List).map((eachAnswer) {
+              return Answer(eachAnswer, _answerButtonAction);
+            }))
           ],
         ),
       ),
