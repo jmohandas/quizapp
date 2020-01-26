@@ -4,49 +4,51 @@ void main() => runApp(QuizApp());
 
 class QuizApp extends StatelessWidget {
   final _questions = [
-    'Where was the first flutter version was unveiled?',
-    'Who invented the dart programming language?',
-    'Which company is promoting dart and flutter development?',
-    'What is the preffered programming language for flutter?',
+    'Where was the first verion of flutter unveiled?',
+    'Which company is supporting flutter development?',
+    'Which programming language is used for flutter development?',
   ];
-  var questionIndex = 0;
-  void answerButtonPressed() {
-    questionIndex += 1;
-    print('User answered question');
+  var _questionIndex = 0;
+
+  void answerButtonAction() {
+    _questionIndex += 1;
+    print('Answer bitton pressed');
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(
-            title: Text('Flutter Quiz'),
-          ),
-          body: Column(
-            children: <Widget>[
-              Text(
-                _questions[questionIndex],
-                style: TextStyle(
-                  fontSize: 28,
-                ),
+        appBar: AppBar(
+          title: Text('Quiz App'),
+        ),
+        body: Column(
+          children: <Widget>[
+            Text(
+              _questions[_questionIndex],
+              style: TextStyle(
+                fontSize: 28,
               ),
-              RaisedButton(
-                child: Text('Answer 1'),
-                onPressed: answerButtonPressed,
-              ),
-              RaisedButton(
-                child: Text('Answer 2'),
-                onPressed: answerButtonPressed,
-              ),
-              RaisedButton(
-                child: Text('Answer 3'),
-                onPressed: answerButtonPressed,
-              ),
-              RaisedButton(
-                child: Text('Answer 4'),
-                onPressed: answerButtonPressed,
-              ),
-            ],
-          )),
+            ),
+            RaisedButton(
+              onPressed: answerButtonAction,
+              child: Text('Answer 1'),
+            ),
+            RaisedButton(
+              onPressed: answerButtonAction,
+              child: Text('Answer 2'),
+            ),
+            RaisedButton(
+              onPressed: answerButtonAction,
+              child: Text('Answer 3'),
+            ),
+            RaisedButton(
+              onPressed: answerButtonAction,
+              child: Text('Answer 4'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
