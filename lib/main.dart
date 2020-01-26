@@ -12,7 +12,7 @@ class QuizApp extends StatelessWidget {
 
   void answerButtonAction() {
     _questionIndex += 1;
-    print('Answer bitton pressed');
+    print('The question index -> $_questionIndex');
   }
 
   @override
