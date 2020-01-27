@@ -1,16 +1,28 @@
 # quizapp
 
-A new Flutter project.
+This is a simple quiz application developed in Flutter framework. The application contains
+some static questions with multiple answers. This is a good starting point for learning
+Flutter development.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This code is structured into 5 files.
 
-A few resources to get you started if this is your first Flutter project:
+1. main.dart
+2. showQuestion.dart
+3. question.dart
+4. answer.dart
+5. showResult.dart
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### How to run the application?
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The application can be started using the following command
+
+> flutter run
+
+### Prerequisites
+
+The system shall have following software configuration to run the application successfully
+
+1. Flutter Framework installed
+2. An IOS or Android Simulator Running (or) a connected mobile device
