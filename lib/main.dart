@@ -1,48 +1,150 @@
 import 'package:flutter/material.dart';
 
-import './question.dart';
-import './answer.dart';
+import './showQuestion.dart';
+import './showResult.dart';
 
 void main() => runApp(QuizApp());
 
 class QuizApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _QuizAppWithSate();
+    return _QuizAppWithState();
   }
 }
 
-class _QuizAppWithSate extends State<QuizApp> {
+class _QuizAppWithState extends State<QuizApp> {
   final _questions = [
     {
       'questionText': 'Which mammal first reached earth\'s orbit alive?',
-      'answers': ['Cat', 'Monkey', 'Dog', 'Human'],
+      'answers': [
+        {
+          'text': 'Cat',
+          'score': 0,
+        },
+        {
+          'text': 'Monkey',
+          'score': 0,
+        },
+        {
+          'text': 'Dog',
+          'score': 10,
+        },
+        {
+          'text': 'Human',
+          'score': 0,
+        },
+      ],
     },
     {
       'questionText': 'What is the name of jewish new year?',
-      'answers': ['Hanukkah', 'Kwanzaa', 'Yom kippur', 'Rosh Hashanah'],
+      'answers': [
+        {
+          'text': 'Hanukkah',
+          'score': 0,
+        },
+        {
+          'text': 'Kwanzaa',
+          'score': 0,
+        },
+        {
+          'text': 'Yom kippur',
+          'score': 0,
+        },
+        {
+          'text': 'Rosh Hashanah',
+          'score': 10,
+        },
+      ],
     },
     {
       'questionText': 'What is the largest planet in our solar system?',
-      'answers': ['Jupitor', 'Pluto', 'Saturn', 'Earth', 'Venus'],
+      'answers': [
+        {
+          'text': 'Jupitor',
+          'score': 10,
+        },
+        {
+          'text': 'Pluto',
+          'score': 0,
+        },
+        {
+          'text': 'Saturn',
+          'score': 0,
+        },
+        {
+          'text': 'Earth',
+          'score': 0,
+        },
+        {
+          'text': 'Venus',
+          'score': 0,
+        },
+      ],
     },
     {
-      'questionText': 'War and Peace book was originally written in which language?',
-      'answers': ['English', 'German', 'Russian', 'French'],
+      'questionText':
+          'War and Peace book was originally written in which language?',
+      'answers': [
+        {
+          'text': 'English',
+          'score': 0,
+        },
+        {
+          'text': 'German',
+          'score': 0,
+        },
+        {
+          'text': 'Russian',
+          'score': 10,
+        },
+        {
+          'text': 'French',
+          'score': 0,
+        },
+      ],
     },
     {
       'questionText': 'What temperature is the same in Celsius and Fahrenheit?',
-      'answers': ['0', '-40', '100', '-60', '63'],
+      'answers': [
+        {
+          'text': '0',
+          'score': 0,
+        },
+        {
+          'text': '-40',
+          'score': 10,
+        },
+        {
+          'text': '100',
+          'score': 0,
+        },
+        {
+          'text': '20',
+          'score': 0,
+        },
+        {
+          'text': '-60',
+          'score': 0,
+        },
+      ],
     },
   ];
 
   var _questionIndex = 0;
+  var _userScored = 0;
 
-  void _answerButtonAction() {
+  void _answerButtonAction(score) {
+    _userScored += score;
     setState(() {
       _questionIndex += 1;
     });
-    print('The question index -> $_questionIndex');
+  }
+
+  void _restartQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _userScored = 0;
+    });
   }
 
   @override
@@ -52,14 +154,17 @@ class _QuizAppWithSate extends State<QuizApp> {
         appBar: AppBar(
           title: Text('Quiz App'),
         ),
-        body: Column(
-          children: <Widget>[
-            Question(_questions[_questionIndex]['questionText']),
-            ...((_questions[_questionIndex]['answers'] as List).map((eachAnswer) {
-              return Answer(eachAnswer, _answerButtonAction);
-            }))
-          ],
-        ),
+        body: _questionIndex < _questions.length
+            ? ShowQuestion(
+                questions: _questions,
+                questionIndex: _questionIndex,
+                answerButtonAction: _answerButtonAction,
+              )
+            : ShowResult(
+              resetQuiz: _restartQuiz,
+              userScore: _userScored,
+              totalScore: _questions.length * 10,
+            ),
       ),
     );
   }
