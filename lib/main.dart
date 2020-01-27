@@ -13,6 +13,7 @@ class QuizApp extends StatefulWidget {
 }
 
 class _QuizAppWithState extends State<QuizApp> {
+  static final  _scoreForCorrectAnswer = 10;
   final _questions = [
     {
       'questionText': 'Which mammal first reached earth\'s orbit alive?',
@@ -27,7 +28,7 @@ class _QuizAppWithState extends State<QuizApp> {
         },
         {
           'text': 'Dog',
-          'score': 10,
+          'score': _scoreForCorrectAnswer,
         },
         {
           'text': 'Human',
@@ -52,7 +53,7 @@ class _QuizAppWithState extends State<QuizApp> {
         },
         {
           'text': 'Rosh Hashanah',
-          'score': 10,
+          'score': _scoreForCorrectAnswer,
         },
       ],
     },
@@ -61,7 +62,7 @@ class _QuizAppWithState extends State<QuizApp> {
       'answers': [
         {
           'text': 'Jupitor',
-          'score': 10,
+          'score': _scoreForCorrectAnswer,
         },
         {
           'text': 'Pluto',
@@ -95,7 +96,7 @@ class _QuizAppWithState extends State<QuizApp> {
         },
         {
           'text': 'Russian',
-          'score': 10,
+          'score': _scoreForCorrectAnswer,
         },
         {
           'text': 'French',
@@ -112,7 +113,7 @@ class _QuizAppWithState extends State<QuizApp> {
         },
         {
           'text': '-40',
-          'score': 10,
+          'score': _scoreForCorrectAnswer,
         },
         {
           'text': '100',
@@ -163,7 +164,7 @@ class _QuizAppWithState extends State<QuizApp> {
             : ShowResult(
               resetQuiz: _restartQuiz,
               userScore: _userScored,
-              totalScore: _questions.length * 10,
+              totalScore: _questions.length * _scoreForCorrectAnswer,
             ),
       ),
     );
